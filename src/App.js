@@ -18,14 +18,21 @@ function App() {
   return (
     <GlobalProvider>
       <AppMenu />
-      <Switch>
-        <Route path="/signin">
-          <SignInAndSignUpPage />
-        </Route>
-        <Route path="/dashboard">
-          <DashboardPage />
-        </Route>
-      </Switch>
+
+      {/* page container */}
+      <div className="container">
+        <Switch>
+          <Route path="/signin">
+            <SignInAndSignUpPage />
+          </Route>
+          <Route path="/dashboard">
+            <DashboardPage />
+          </Route>
+          <Route path="/">
+            <LandingPage />
+          </Route>
+        </Switch>
+      </div>
     </GlobalProvider>
   );
 }
