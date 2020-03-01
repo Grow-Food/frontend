@@ -19,7 +19,7 @@ function App() {
     <GlobalProvider>
       <AppMenu />
 
-      {/* page container */}
+      {/* PAGE CONTAINER */}
       <div className="container">
         <Switch>
           <Route path="/signin">
@@ -33,6 +33,8 @@ function App() {
           </Route>
         </Switch>
       </div>
+      {/* END PAGE CONTAINER */}
+
     </GlobalProvider>
   );
 }
