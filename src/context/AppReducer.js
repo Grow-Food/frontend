@@ -1,7 +1,12 @@
 export default (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case "SIGNIN_USER":
-      return {...state, sidebar: {visible: action.payload}};
-    default: return state;
+      const { email, auth_level, accessToken, refreshToken } = action.payload;
+      return {
+        ...state,
+        user: { email, authLevel: auth_level, accessToken, refreshToken }
+      };
+    default:
+      return state;
   }
-}
+};

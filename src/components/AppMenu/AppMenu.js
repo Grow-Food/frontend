@@ -1,5 +1,13 @@
-import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
 
 const Example = () => {
   // component state
@@ -12,7 +20,9 @@ const Example = () => {
     <div>
       <Navbar color="faded" light>
         <div className="container">
-        <NavbarBrand href="/" className="mr-auto">GROW!food</NavbarBrand>
+          <NavbarBrand href="/" className="mr-auto">
+            GROW!food
+          </NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
             <Nav navbar>
@@ -31,6 +41,6 @@ const Example = () => {
       </Navbar>
     </div>
   );
-}
+};
 
 export default Example;

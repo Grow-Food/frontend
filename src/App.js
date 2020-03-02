@@ -1,18 +1,18 @@
 // import libs
-import React from 'react';
-import './App.css';
-import {Switch, Route} from 'react-router-dom';
+import React from "react";
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
 
 // state provider
-import {GlobalProvider} from './context/GlobalState';
+import { GlobalProvider } from "./context/GlobalState";
 
 // import components
-import AppMenu from './components/AppMenu/AppMenu';
+import AppMenu from "./components/AppMenu/AppMenu";
 
 // import pages
-import LandingPage from './pages/public/LandingPage/LandingPage';
-import SignInAndSignUpPage from './pages/public/SignInAndSignUpPage/SignInAndSignUpPage';
-import DashboardPage from './pages/protected/DashboardPage/DashboardPage';
+import LandingPage from "./pages/public/LandingPage/LandingPage";
+import SignInAndSignUpPage from "./pages/public/SignInAndSignUpPage/SignInAndSignUpPage";
+import DashboardPage from "./pages/protected/DashboardPage/DashboardPage";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
       <AppMenu />
 
       {/* PAGE CONTAINER */}
-      <div className="container">
+      <div className="container full-page-section">
         <Switch>
           <Route path="/signin">
             <SignInAndSignUpPage />
@@ -34,7 +34,6 @@ function App() {
         </Switch>
       </div>
       {/* END PAGE CONTAINER */}
-
     </GlobalProvider>
   );
 }

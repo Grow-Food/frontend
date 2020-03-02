@@ -1,4 +1,19 @@
+/* * utilities * */
 .container {
   width: 80%;
   max-width: 1400px;
+}
+
+.full-page-section {
+  height: calc(100vh - 56px) !important;
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
