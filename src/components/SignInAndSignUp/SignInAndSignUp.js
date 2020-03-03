@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
-import bcrypt from "bcryptjs";
 import axios from "axios";
 
 // import global context
@@ -26,7 +25,7 @@ const SignInAndSignUp = props => {
       // assign url and build user object from component state
       const userObj = {
         email: signUpEmail,
-        pw_hash: signUpPassword,
+        pw: signUpPassword,
         auth_level: 2
       };
       const url = "http://localhost:5000/user/signup";
@@ -69,30 +68,38 @@ const SignInAndSignUp = props => {
       // assign url and build user object from component state
       const userObj = {
         email: signInEmail,
-        pw_hash: signInPassword,
+        pw: signInPassword,
         auth_level: 2
       };
-      const url = "http://localhost:5000/user/auth/signin";
+      const url = "http://localhost:5000/auth/signin";
 
-      // axios call to sign in
+      // axios call to signup
       let response = await axios.post(url, userObj);
 
       // handle post response
       if (!response.error) {
-        // TODO: call global 'signUp' action to update state/ui
-        // signUp();
-        console.log(`success response: ${response}`);
+        // pull data from response
+        const { email, auth_level } = response.data;
 
-        // TODO: redirect to dashboard
+        // call global signInUser action to update state/ui
+        const user = {
+          email,
+          auth_level,
+          accessToken: "dummy_access_token",
+          refreshToken: "dummy_refresh_token"
+        };
+        signInUser(user);
 
-        // display error if request was successful but returned a failure
+        props.history.push("/");
+
+        // TODO: display error if request was successful but returned a failure
       } else {
-        console.log(`request successful but returned fail: ${response.error}`);
+        // console.log(`request successful but returned fail: ${response.error}`);
       }
 
-      // catch error if request itself was unsuccessful
+      // TODO: display error if request itself was unsuccessful
     } catch (err) {
-      console.log(`error: ${err}`);
+      // console.log(`error: ${err}`);
     }
   };
 
@@ -120,9 +127,7 @@ const SignInAndSignUp = props => {
                 name="signUpPassword"
                 id="signUpPassword"
                 placeholder="Your password here..."
-                onChange={evt =>
-                  setSignUpPassword(bcrypt.hashSync(evt.target.value, 4))
-                }
+                onChange={evt => setSignUpPassword(evt.target.value, 4)}
               />
             </FormGroup>
             <Button color="primary">Sign Up</Button>
@@ -149,9 +154,7 @@ const SignInAndSignUp = props => {
                 name="signInPassword"
                 id="signInPassword"
                 placeholder="Your password here..."
-                onChange={evt =>
-                  setSignInPassword(bcrypt.hashSync(evt.target.value, 4))
-                }
+                onChange={evt => setSignInPassword(evt.target.value, 4)}
               />
             </FormGroup>
             <Button color="success">Sign In</Button>
