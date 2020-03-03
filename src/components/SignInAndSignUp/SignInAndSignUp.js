@@ -6,7 +6,7 @@ import axios from "axios";
 // import global context
 import { GlobalContext } from "../../context/GlobalState";
 
-const SignInAndSignUp = () => {
+const SignInAndSignUp = props => {
   // component state
   let [signUpEmail, setSignUpEmail] = useState("");
   let [signUpPassword, setSignUpPassword] = useState("");
@@ -15,7 +15,7 @@ const SignInAndSignUp = () => {
 
   // 'hook in' to global context
   const context = useContext(GlobalContext);
-  // pull signInUser off of global context
+  // pull signInUser action off of global context
   const { signInUser } = context;
 
   const handleSignUpSubmit = async evt => {
@@ -48,16 +48,16 @@ const SignInAndSignUp = () => {
         };
         signInUser(user);
 
-        // TODO: redirect to dashboard
+        props.history.push("/");
 
-        // display error if request was successful but returned a failure
+        // TODO: display error if request was successful but returned a failure
       } else {
-        console.log(`request successful but returned fail: ${response.error}`);
+        // console.log(`request successful but returned fail: ${response.error}`);
       }
 
-      // catch error if request itself was unsuccessful
+      // TODO: display error if request itself was unsuccessful
     } catch (err) {
-      console.log(`error: ${err}`);
+      // console.log(`error: ${err}`);
     }
   };
 
@@ -76,7 +76,6 @@ const SignInAndSignUp = () => {
 
       // axios call to sign in
       let response = await axios.post(url, userObj);
-      console.log(`response: ${response}`);
 
       // handle post response
       if (!response.error) {
@@ -98,7 +97,7 @@ const SignInAndSignUp = () => {
   };
 
   return (
-    <Form>
+    <div>
       <Row form>
         <Col md={6}>
           <Form onSubmit={handleSignUpSubmit}>
@@ -159,7 +158,7 @@ const SignInAndSignUp = () => {
           </Form>
         </Col>
       </Row>
-    </Form>
+    </div>
   );
 };
 

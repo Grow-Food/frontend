@@ -22,15 +22,15 @@ function App() {
       {/* PAGE CONTAINER */}
       <div className="container full-page-section">
         <Switch>
-          <Route path="/signin">
-            <SignInAndSignUpPage />
-          </Route>
-          <Route path="/dashboard">
-            <DashboardPage />
-          </Route>
-          <Route path="/">
-            <LandingPage />
-          </Route>
+          <Route
+            path="/signin"
+            render={props => <SignInAndSignUpPage {...props} />}
+          />
+          <Route
+            path="/dashboard"
+            render={props => <DashboardPage {...props} />}
+          />
+          <Route path="/" render={props => <LandingPage {...props} />} />
         </Switch>
       </div>
       {/* END PAGE CONTAINER */}

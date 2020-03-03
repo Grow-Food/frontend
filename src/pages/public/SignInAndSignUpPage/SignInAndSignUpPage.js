@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import SignInAndSignUp from '../../../components/SignInAndSignUp/SignInAndSignUp';
+import SignInAndSignUp from "../../../components/SignInAndSignUp/SignInAndSignUp";
 
-const SignInAndSignUpPage = () => {
+const SignInAndSignUpPage = props => {
   return (
     <div>
-      <SignInAndSignUp />
+      <SignInAndSignUp {...props} />
     </div>
-  )
+  );
 };
 
 export default SignInAndSignUpPage;
